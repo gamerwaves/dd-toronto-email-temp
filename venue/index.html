@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Venue Email Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #C2EDFB;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      font-size: 1rem;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #output {
+      margin-top: 30px;
+      border: 1px solid #ccc;
+      background: white;
+      padding: 15px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      font-family: monospace;
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Venue Email Generator</h1>
+
+  <label for="name">Your Name</label>
+  <input type="text" id="name" placeholder="Advait Contractor" value="Advait Contractor" />
+
+  <label for="grade">Your Grade</label>
+  <input type="text" id="grade" placeholder="11" value="11" />
+
+  <label for="city">City</label>
+  <input type="text" id="city" placeholder="Toronto" value="Toronto" />
+
+  <label for="venue">Venue Name</label>
+  <input type="text" id="venue" placeholder="Community Center" value="Community Center" />
+
+  <label for="features">Venue Features</label>
+  <textarea id="features" placeholder="Wi-Fi, projectors, seating areas" rows="3">Wi-Fi, projectors, seating areas</textarea>
+
+  <button onclick="generateEmail()">Generate Email</button>
+
+  <h2>Generated Email Template</h2>
+  <pre id="output"></pre>
+
+  <script>
+    function generateEmail() {
+      const name = document.getElementById('name').value || '_(insert name)_';
+      const grade = document.getElementById('grade').value || '_(insert grade)_';
+      const city = document.getElementById('city').value || '(your city)';
+      const venue = document.getElementById('venue').value || '(venue)';
+      const features = document.getElementById('features').value || '(features)';
+
+      const template = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Daydream ${city}: Request for a Venue</title>
+</head>
+<body style="background-color:#C2EDFB; font-family: 'Times New Roman', Times, serif; margin:0; padding:0;">
+  <header style="background-color:#FFFFFF; text-align:center; padding:0; margin:0;">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/255052e6c0e989f01b042be72e9d56f9672858a9_headers-4.png" alt="Header Image" style="width:100%; max-width:100%; display:block;"/>
+  </header>
+
+  <div style="padding: 30px;">
+    <h2 style="text-align:center; margin-bottom: 0.5em;">Daydream ${city}:</h2>
+    <h3 style="text-align:center; margin-top: 0; margin-bottom: 1em;">Request for a Venue</h3>
+
+    <p style="text-align:justify; margin-bottom: 1em;">Dear ${venue}</p>
+    <p style="text-align:justify; margin-bottom: 1em;">I hope this email finds you well. My name is <strong>${name}</strong>, a <strong>${grade}</strong> student and member of Hack Club, a global open-source community for teenagers interested in coding and technical projects. We're organizing Daydream ${city} this year, and we would like to request for a venue to conduct our hackathon at.</p>
+    <p style="text-align:justify; margin-bottom: 1em;">On September 27th, we're organizing Daydream ${city}, a 24-hour hackathon for over 100 teenagers across ${city}. We'd like to request for the usage of your venue.</p>
+    <p style="text-align:justify; margin-bottom: 1em;">Daydream is a beginner-friendly game jam, where teenagers collaborate to build games over 24 hours. It provides an opportunity for students to experience the joy of coding and creation in a fun, collaborative environment. This event is part of a larger global initiative, with hackathons running simultaneously in over 100 cities.</p>
+    <p style="text-align:justify; margin-bottom: 1em;">We believe that your <strong>${venue}</strong> is perfect for our hackathon as it has <strong>${features}</strong> and will provide our participants with plenty of comfort for our participants should they feel the need to sleep during this 24 hour hackathon.</p>
+    <p style="text-align:justify; margin-bottom: 1em;">Should you have any further questions, we'd be delighted to follow up with any additional information or discuss further over the phone or by email - whichever is more comfortable.</p>
+    <p style="text-align:justify; margin-bottom: 1em;">Thank you for considering our request, and we look forward to your favourable reply.</p>
+    <p style="margin-bottom: 0;">Warm regards<br /><strong>${name}</strong><br />On behalf of the team behind Daydream ${city}</p>
+  </div>
+
+  <footer style="background-color:#FFFFFF; text-align:center; padding:0; margin:0;">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/3109e1a048b5f09f8fe02737617df86c0d74c1bd_footer-2.png" alt="Footer Image" style="width:100%; max-width:100%; display:block;"/>
+  </footer>
+</body>
+</html>`;
+
+      document.getElementById('output').textContent = template.trim();
+    }
+  </script>
+
+</body>
+</html>
