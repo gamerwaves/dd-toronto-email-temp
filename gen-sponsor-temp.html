@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Editable Sponsorship Template</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f0f4f8;
+  }
+  label {
+    display: block;
+    margin: 10px 0 4px;
+    font-weight: bold;
+  }
+  input[type="text"] {
+    width: 300px;
+    padding: 6px;
+    font-size: 1rem;
+  }
+  #output {
+    margin-top: 30px;
+    border: 1px solid #ccc;
+    background-color: #C2EDFB;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 20px;
+    max-width: 700px;
+  }
+  #output h2, #output h3 {
+    text-align: center;
+  }
+  #output p {
+    text-align: justify;
+  }
+  #output img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto 20px;
+  }
+  textarea {
+    width: 100%;
+    height: 150px;
+    margin-top: 15px;
+    font-family: monospace;
+    font-size: 14px;
+  }
+  button {
+    margin-top: 15px;
+    padding: 8px 12px;
+    font-size: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<h1>Edit Sponsorship Template</h1>
+
+<label for="city">Your City</label>
+<input type="text" id="city" placeholder="e.g. Toronto" value="your city" />
+
+<label for="company">Company Name</label>
+<input type="text" id="company" placeholder="e.g. Acme Corp" value="company" />
+
+<label for="name">Your Name</label>
+<input type="text" id="name" placeholder="e.g. John Doe" value="name" />
+
+<label for="grade">Your Grade</label>
+<input type="text" id="grade" placeholder="e.g. 10th grade" value="grade" />
+
+<div id="output">
+  <!-- The live updated template will go here -->
+</div>
+
+<label for="htmlOutput">Copy the HTML below:</label>
+<textarea id="htmlOutput" readonly></textarea>
+<button id="copyBtn">Copy HTML to Clipboard</button>
+
+<script>
+  const cityInput = document.getElementById('city');
+  const companyInput = document.getElementById('company');
+  const nameInput = document.getElementById('name');
+  const gradeInput = document.getElementById('grade');
+  const outputDiv = document.getElementById('output');
+  const htmlOutput = document.getElementById('htmlOutput');
+  const copyBtn = document.getElementById('copyBtn');
+
+  function updateTemplate() {
+    const city = cityInput.value.trim() || 'your city';
+    const company = companyInput.value.trim() || 'company';
+    const name = nameInput.value.trim() || 'name';
+    const grade = gradeInput.value.trim() || 'grade';
+
+    const html = `
+<div style="background-color:#C2EDFB; font-family:'Times New Roman', Times, serif;">
+  <div style="text-align:center;">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/255052e6c0e989f01b042be72e9d56f9672858a9_headers-4.png" alt="Header Image" style="width:100%; max-width:100%;">
+  </div>
+  <div style="padding:30px;">
+    <h2 style="text-align:center;">Sponsorship Opportunity:</h2>
+    <h3 style="text-align:center;">Daydream ${city} Hackathon</h3>
+    <p style="text-align:justify;">Dear ${company} Team,</p>
+    <p style="text-align:justify;">I hope this email finds you well. My name is ${name}, a ${grade} student and member of Hack Club, a global open-source community for teenagers interested in coding and technical projects. We're organizing Daydream ${city} this year, and we would love to explore a sponsorship partnership with your company for our hackathon.</p>
+    <p style="text-align:justify;">On September 27th, we're organizing Daydream ${city}, a 24-hour hackathon for over 100 teenagers across ${city}. We're seeking sponsors who believe in empowering the next generation of innovators.</p>
+    <p style="text-align:justify;">Daydream is a beginner-friendly game jam, where teenagers collaborate to build games over 24 hours. It provides an opportunity for students to experience the joy of coding and creation in a fun, collaborative environment. This event is part of a larger global initiative, with hackathons running simultaneously in over 100 cities.</p>
+    <p style="text-align:justify;">By sponsoring Daydream ${city}, your company would gain valuable exposure to 100+ tech-savvy teenagers and their families, while supporting STEM education in ${city}. We offer various sponsorship packages including logo placement, social media recognition, speaking opportunities, and direct access to emerging talent. Your support would help cover venue costs, meals, prizes, and equipment needed to create an inspiring environment for these young innovators.</p>
+    <p style="text-align:justify;">Should you have any further questions about sponsorship opportunities, we'd be delighted to follow up with a detailed sponsorship packet or discuss this partnership over the phone or by email - whichever is more comfortable.</p>
+    <p style="text-align:justify;">Thank you for considering supporting our young innovators, and we look forward to your favorable reply.</p>
+    <p style="text-align:justify;">Warm regards,<br>${name}<br>On behalf of the team behind Daydream ${city}</p>
+  </div>
+  <div style="text-align:center;">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/3109e1a048b5f09f8fe02737617df86c0d74c1bd_footer-2.png" alt="Footer Image" style="width:100%; max-width:100%;">
+  </div>
+</div>
+    `.trim();
+
+    outputDiv.innerHTML = html;
+    htmlOutput.value = html;
+  }
+
+  cityInput.addEventListener('input', updateTemplate);
+  companyInput.addEventListener('input', updateTemplate);
+  nameInput.addEventListener('input', updateTemplate);
+  gradeInput.addEventListener('input', updateTemplate);
+
+  copyBtn.addEventListener('click', () => {
+    htmlOutput.select();
+    document.execCommand('copy');
+    copyBtn.textContent = 'Copied!';
+    setTimeout(() => (copyBtn.textContent = 'Copy HTML to Clipboard'), 2000);
+  });
+
+  // Initialize on load
+  updateTemplate();
+</script>
+
+</body>
+</html>
