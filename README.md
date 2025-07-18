@@ -1,5 +1,5 @@
 # Daydream assets
-Email and letter templates for Daydream Singapore, that can be modified into emails and printouts for other Daydreams too!
+Email and letter templates for Daydream Toronto, that can be modified into emails and printouts for other Daydreams too!
 
 ## Heads up! 
 The files in the "Assets" folder are from Hack Club's official [Daydream](https://github.com/hackclub/daydream) repo. The graphics folder files are made by me
