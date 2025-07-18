@@ -32,6 +32,10 @@
       font-family: 'Times New Roman', Times, serif;
       max-width: 800px;
       border: 1px solid #ccc;
+      overflow-wrap: break-word; /* ensures long words wrap */
+      word-break: break-word;
+      white-space: pre-wrap; /* preserves line breaks and wraps text */
+      box-sizing: border-box;
     }
     #output h2, #output h3 {
       text-align: center;
