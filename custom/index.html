@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom Email Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      max-width: 500px;
+      padding: 8px;
+      font-size: 1rem;
+    }
+    textarea {
+      height: 80px;
+      font-family: monospace;
+    }
+    #output {
+      margin-top: 30px;
+      background-color: #C2EDFB;
+      padding: 25px;
+      font-family: 'Times New Roman', Times, serif;
+      max-width: 800px;
+      border: 1px solid #ccc;
+    }
+    #output h2, #output h3 {
+      text-align: center;
+    }
+    #output p {
+      text-align: justify;
+      margin-bottom: 1em;
+    }
+    #output img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto 20px;
+    }
+    textarea#htmlOutput {
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Daydream Custom Text Email Generator</h1>
+  <label for="city">City</label>
+  <input type="text" id="city" value="Toronto" />
+  
+  <label for="title">Title</label>
+  <input type="text" id="title" value="Request for ..." />
+  
+  <label for="text">Text</label>
+  <input type="text" id="text" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+
+  <div id="output"></div>
+
+  <label for="htmlOutput">Copy the HTML below:</label>
+  <textarea id="htmlOutput" readonly></textarea>
+  <button id="copyBtn">Copy HTML to Clipboard</button>
+
+  <script>
+    const cityInput = document.getElementById('city');
+    const titleInput = document.getElementById('title');
+    const textInput = document.getElementById('text');
+    const outputDiv = document.getElementById('output');
+    const htmlOutput = document.getElementById('htmlOutput');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function updateTemplate() {
+      const city = cityInput.value.trim() || '(insert city)';
+      const title = titleInput.value.trim() || '(insert title)';
+      const text = textInput.value.trim() || '(insert text)';
+
+      const html = `
+<div style="background-color:#C2EDFB; font-family:'Times New Roman', Times, serif;">
+  <div style="text-align:center;">
+    <img src="https://github.com/gamerwaves/dd-toronto-email-temp/blob/master/Graphics/headers.png?raw=true" alt="Header Image" style="width:100%; max-width:100%;">
+  </div>
+  <div style="padding:30px;">
+    <h2>Daydream ${city}:</h2>
+    <h3>${title}</h3>
+    <p>${text}</p>
+  </div>
+  <div style="text-align:center;">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/3109e1a048b5f09f8fe02737617df86c0d74c1bd_footer-2.png" alt="Footer Image" style="width:100%; max-width:100%;">
+  </div>
+</div>
+`.trim();
+
+      outputDiv.innerHTML = html;
+      htmlOutput.value = html;
+    }
+
+    [nameInput, gradeInput, cityInput, venueInput, featuresInput].forEach(input =>
+      input.addEventListener('input', updateTemplate)
+    );
+
+    copyBtn.addEventListener('click', () => {
+      htmlOutput.select();
+      document.execCommand('copy');
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => (copyBtn.textContent = 'Copy HTML to Clipboard'), 1500);
+    });
+
+    updateTemplate();
+  </script>
+
+
+<script src="https://static.app/js/static.js" type="text/javascript"></script>
+</body>
+</html>
