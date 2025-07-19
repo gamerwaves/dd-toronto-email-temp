@@ -41,6 +41,7 @@
       text-align: center;
     }
     #output p {
+      white-space: pre-line; /* preserves line breaks entered in the textarea */
       text-align: justify;
       margin-bottom: 1em;
     }
@@ -93,7 +94,7 @@
     function updateTemplate() {
       const city = cityInput.value.trim() || '(insert city)';
       const title = titleInput.value.trim() || '(insert title)';
-      const text = textInput.value.trim() || '(insert text)';
+      const text = textInput.value.trim() || '(insert text)'.replace(/\n/g, '<br>');
 
       const html = `
 <div style="background-color:#C2EDFB; font-family:'Times New Roman', Times, serif;">
@@ -103,7 +104,7 @@
   <div style="padding:30px;">
     <h2>Daydream ${city}:</h2>
     <h3>${title}</h3>
-    <p>${text}</p>
+    <p style="white-space: pre-line;">${text}</p>
   </div>
   <div style="text-align:center;">
     <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/3109e1a048b5f09f8fe02737617df86c0d74c1bd_footer-2.png" alt="Footer Image" style="width:100%; max-width:100%;">
